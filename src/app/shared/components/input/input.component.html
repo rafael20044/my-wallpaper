@@ -1,0 +1,11 @@
+<ion-input 
+    label-placement="floating" 
+    fill="outline" [label]="label" 
+    [placeholder]="placeholder" 
+    [type]="type" 
+    fill="outline"
+>
+    @if (type === 'password') {
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    }
+</ion-input>

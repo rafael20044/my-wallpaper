@@ -1,0 +1,11 @@
+<ion-content [fullscreen]="true">
+  <div class="body">
+    <ion-img src="/assets/icon/wallpaper-logo.webp" class="img"/>
+    <h1>Register for My wall</h1>
+    @if (!isEmail) {
+      <app-opcion-register (isEmail)="getEmiter($event)" />
+    }@else{
+      <app-register-email  (isReturn)="getReturn($event)"/>
+    }
+  </div>
+</ion-content>

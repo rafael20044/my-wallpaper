@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'my-wallpaper',
+  appId: 'io.personal.wallpaper',
+  appName: 'My wallpaper',
   webDir: 'www'
 };
 
