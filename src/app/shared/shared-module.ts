@@ -5,15 +5,19 @@ import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
 import { OpcionRegisterComponent } from './components/opcion-register/opcion-register.component';
 import { RegisterEmailComponent } from './components/register-email/register-email.component';
+import { UserService } from './services/user-service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [InputComponent, ButtonComponent, OpcionRegisterComponent, RegisterEmailComponent],
-  providers: [],
+  providers: [UserService],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [InputComponent, ButtonComponent, OpcionRegisterComponent, RegisterEmailComponent],
 })

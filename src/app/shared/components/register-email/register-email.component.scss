@@ -3,3 +3,8 @@ form{
     display: flex;
     flex-direction: column;
 }
+
+form .buttons{
+    display: flex;
+    justify-content: space-between;
+}
