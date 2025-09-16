@@ -11,6 +11,7 @@ import { ToastService } from './services/toast-service';
 import { FireStoreService } from './services/fire-store-service';
 import { RegisterEmail1Component } from './components/register-email1/register-email1.component';
 import { RegisterEmail2Component } from './components/register-email2/register-email2.component';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -27,6 +28,7 @@ import { RegisterEmail2Component } from './components/register-email2/register-e
     UserService, 
     ToastService,
     FireStoreService,
+    RouterLink,
   ],
   imports: [
     CommonModule,

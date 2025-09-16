@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,9 @@ export class RegisterPage implements OnInit {
 
   isEmail:boolean = false;
 
-  constructor() { }
+  constructor(
+    private readonly router:Router,
+  ) { }
 
   ngOnInit() {
   }
@@ -21,6 +24,10 @@ export class RegisterPage implements OnInit {
 
   getReturn(isReturn:boolean){
     this.isEmail = !isReturn;
+  }
+
+  goToRegister(){
+    this.router.navigate(['/login'])
   }
 
 }

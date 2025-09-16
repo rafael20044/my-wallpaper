@@ -1,10 +1,13 @@
 <ion-content [fullscreen]="true">
   <div class="body">
     <ion-img src="/assets/icon/wallpaper-logo.webp" class="img"/>
-    <h1>Register for My wall</h1>
+    <h1>Register for My wallpaper</h1>
     <div>
       @if (!isEmail) {
         <app-opcion-register (isEmail)="getEmiter($event)" />
+        <div class="icon">
+          <p>You have account? <a routerLink="/login">login here</a></p>
+        </div>
       }@else{
         <app-register-email  (isCancel)="getReturn($event)"/>
       }

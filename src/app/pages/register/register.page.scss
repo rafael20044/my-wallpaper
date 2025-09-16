@@ -9,3 +9,13 @@
 .body .img{
     width: 20%;
 }
+
+.body .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body .icon a{
+    text-decoration: none;
+}

@@ -5,6 +5,7 @@ import { UserService } from '../../services/user-service';
 import { IUser } from 'src/app/interfaces/iuser';
 import { FireStoreService } from '../../services/fire-store-service';
 import { Const } from 'src/app/const/const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-email',
@@ -34,6 +35,7 @@ export class RegisterEmailComponent implements OnInit {
     private readonly toastService: ToastService,
     private readonly userService:UserService,
     private readonly storageService: FireStoreService,
+    private readonly router:Router,
   ) { }
 
   ngOnInit() { }
@@ -71,7 +73,10 @@ export class RegisterEmailComponent implements OnInit {
         email: email || '',
         lastName: lastName || '',
       }
-      await this.storageService.setData(Const.userCollection, user);
+      const ref = await this.storageService.setData(Const.userCollection, user);
+      if (ref) {
+        this.router.navigate(['/home']);
+      }
     }
   }
 
