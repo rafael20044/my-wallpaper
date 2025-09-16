@@ -14,13 +14,14 @@ import { Const } from 'src/app/const/const';
 })
 export class RegisterEmailComponent implements OnInit {
 
-  @Output() isReturn = new EventEmitter<boolean>;
+  @Output() isCancel = new EventEmitter<boolean>;
 
   nameControl = new FormControl('', [Validators.required]);
   lastNameControl = new FormControl('', [Validators.required]);
   emailControl = new FormControl('', [Validators.required, Validators.email]);
   passwordControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
   passConfir = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  isNext = false;
 
   fromGroup = new FormGroup({
     name: this.nameControl,
@@ -37,8 +38,16 @@ export class RegisterEmailComponent implements OnInit {
 
   ngOnInit() { }
 
-  emiterIsReturn() {
-    this.isReturn.emit(true);
+  getIsNext(isNext:boolean) {
+    this.isNext = isNext;
+  }
+
+  getIsReturn(isReturn:boolean){
+    this.isNext = !isReturn;
+  }
+
+  getIsCancel(isCancel:boolean){
+    this.isCancel.emit(isCancel);
   }
 
   async doSubmit() {
@@ -51,7 +60,7 @@ export class RegisterEmailComponent implements OnInit {
       this.toastService.presentToast('Passwords do not match', 'top', 'warning');
       return;
     }
-
+    //console.log(this.fromGroup.value);
     const {email, password, name, lastName} = this.fromGroup.value;
 
     const uid = await this.userService.createUserEmailAndPassword(email || '', password || '');

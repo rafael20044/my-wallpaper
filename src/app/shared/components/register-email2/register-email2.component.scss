@@ -1,11 +1,10 @@
-form{
-    padding: 2rem;
+.body{
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-form .buttons{
+.body .buttons{
     display: flex;
     justify-content: space-between;
 }

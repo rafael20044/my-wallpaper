@@ -6,7 +6,7 @@
       @if (!isEmail) {
         <app-opcion-register (isEmail)="getEmiter($event)" />
       }@else{
-        <app-register-email  (isReturn)="getReturn($event)"/>
+        <app-register-email  (isCancel)="getReturn($event)"/>
       }
     </div>
   </div>

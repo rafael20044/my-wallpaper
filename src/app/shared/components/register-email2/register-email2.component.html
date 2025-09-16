@@ -1,0 +1,9 @@
+<div class="body">
+  <app-input label="Email" placeholder="jhon@gmail.com" type="email" [control]="emailControl" />
+  <app-input label="Password" placeholder="*************" type="password" [control]="passwordControl" />
+  <app-input label="confirm your password" placeholder="**************" type="password" [control]="passConfir" />
+  <div class="buttons">
+    <app-button (click)="emiterIsReturn()" text="Return" />
+    <app-button text="Register" type="submit" />
+  </div>
+</div>

@@ -1,13 +1,19 @@
 <ion-card>
   <form [formGroup]="fromGroup" (ngSubmit)="doSubmit()">
-    <app-input label="Name" placeholder="Jhon"  [control]="nameControl"/>
-    <app-input label="Last name" placeholder="Arrieta" [control]="lastNameControl"/>
-    <app-input label="Email" placeholder="jhon@gmail.com" type="email" [control]="emailControl" />
-    <app-input label="Password" placeholder="*************" type="password" [control]="passwordControl" />
-    <app-input label="confirm your password" placeholder="**************" type="password" [control]="passConfir" />
-    <div class="buttons">
-      <app-button (click)="emiterIsReturn()" text="Return" />
-      <app-button text="Register" type="submit"/>
-    </div>
+    @if(!isNext){
+      <app-register-email1 
+        (isCancel)="getIsCancel($event)" 
+        (isNext)="getIsNext($event)"
+        [nameControl]="nameControl" 
+        [lastNameControl]="lastNameControl" 
+      />
+    }@else {
+      <app-register-email2 
+        (isReturn)="getIsReturn($event)"
+        [emailControl]="emailControl" 
+        [passwordControl]="passwordControl" 
+        [passConfir]="passConfir" 
+      />
+    }
   </form>
 </ion-card>

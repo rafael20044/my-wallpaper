@@ -1,0 +1,9 @@
+<div class="body">
+    <app-input label="Name" placeholder="Jhon" [control]="nameControl" />
+    <app-input label="Last name" placeholder="Arrieta" [control]="lastNameControl" />
+    <div class="buttons">
+        <app-button (click)="emiterIsCancel()" text="Cancel" />
+        <app-button (click)="emiterIsNext()" text="Next" />
+    </div>
+
+</div>

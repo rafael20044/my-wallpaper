@@ -9,11 +9,20 @@ import { UserService } from './services/user-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastService } from './services/toast-service';
 import { FireStoreService } from './services/fire-store-service';
+import { RegisterEmail1Component } from './components/register-email1/register-email1.component';
+import { RegisterEmail2Component } from './components/register-email2/register-email2.component';
 
 
 
 @NgModule({
-  declarations: [InputComponent, ButtonComponent, OpcionRegisterComponent, RegisterEmailComponent],
+  declarations: [
+    InputComponent, 
+    ButtonComponent, 
+    OpcionRegisterComponent, 
+    RegisterEmailComponent, 
+    RegisterEmail1Component,
+    RegisterEmail2Component
+  ],
   providers: [
     UserService, 
     ToastService,
