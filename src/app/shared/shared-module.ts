@@ -7,12 +7,18 @@ import { OpcionRegisterComponent } from './components/opcion-register/opcion-reg
 import { RegisterEmailComponent } from './components/register-email/register-email.component';
 import { UserService } from './services/user-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastService } from './services/toast-service';
+import { FireStoreService } from './services/fire-store-service';
 
 
 
 @NgModule({
   declarations: [InputComponent, ButtonComponent, OpcionRegisterComponent, RegisterEmailComponent],
-  providers: [UserService],
+  providers: [
+    UserService, 
+    ToastService,
+    FireStoreService,
+  ],
   imports: [
     CommonModule,
     IonicModule,

@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { createUserWithEmailAndPassword, getAuth } from '@angular/fire/auth';
-import {initializeApp} from '@angular/fire/app';
-import { environment } from 'src/environments/environment.prod';
+import { app } from 'src/app/core/config/firebase.confi';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private app = initializeApp(environment.firebaseConfig);
-  private auth = getAuth(this.app);
+  private auth = getAuth(app);
 
   constructor(){}
 

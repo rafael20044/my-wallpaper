@@ -14,9 +14,13 @@ export class InputComponent  implements OnInit {
   @Input() placeholder:string = '';
   @Input() control = new FormControl();
 
+  helpText:string = '';
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.helpText = (this.type === 'password') ? 'minimum 6 characters' : '';
+  }
 
 }
 
