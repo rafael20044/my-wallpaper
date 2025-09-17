@@ -3,7 +3,8 @@ import {
   createUserWithEmailAndPassword, 
   getAuth, GoogleAuthProvider, 
   signInWithPopup,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut
 } from '@angular/fire/auth';
 import { app } from 'src/app/core/config/firebase.confi';
 import { ToastService } from './toast-service';
@@ -47,4 +48,10 @@ export class UserService {
       return;
     }
   }
+
+  async mySingOut(){
+    signOut(this.auth)
+  }
+
+
 }
