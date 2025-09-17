@@ -12,6 +12,8 @@ import { FireStoreService } from './services/fire-store-service';
 import { RegisterEmail1Component } from './components/register-email1/register-email1.component';
 import { RegisterEmail2Component } from './components/register-email2/register-email2.component';
 import { RouterLink } from '@angular/router';
+import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
+import { TabComponent } from './components/tab/tab.component';
 
 
 
@@ -22,7 +24,9 @@ import { RouterLink } from '@angular/router';
     OpcionRegisterComponent, 
     RegisterEmailComponent, 
     RegisterEmail1Component,
-    RegisterEmail2Component
+    RegisterEmail2Component,
+    FloatingButtonComponent,
+    TabComponent,
   ],
   providers: [
     UserService, 
@@ -36,6 +40,13 @@ import { RouterLink } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
   ],
-  exports: [InputComponent, ButtonComponent, OpcionRegisterComponent, RegisterEmailComponent],
+  exports: [
+    InputComponent, 
+    ButtonComponent, 
+    OpcionRegisterComponent, 
+    RegisterEmailComponent,
+    FloatingButtonComponent,
+    TabComponent,
+  ],
 })
 export class SharedModule { }

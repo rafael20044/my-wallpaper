@@ -11,7 +11,7 @@ export const isLoggedGuard: CanActivateFn = (route, state) => {
       if (!user) {
         resolve(true);
       }else{
-        router.navigate(['/home']);
+        router.navigate(['/tab/home']);
         resolve(false);
       }
     });
