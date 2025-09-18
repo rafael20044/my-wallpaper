@@ -6,6 +6,7 @@ import { IUser } from 'src/app/interfaces/iuser';
 import { FireStoreService } from '../../services/fire-store-service';
 import { Const } from 'src/app/const/const';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage-service';
 
 @Component({
   selector: 'app-register-email',
@@ -72,10 +73,12 @@ export class RegisterEmailComponent implements OnInit {
         name: name || '',
         email: email || '',
         lastName: lastName || '',
+        provider: 'email',
+        photoURL: ''
       }
       const ref = await this.storageService.setData(Const.userCollection, user);
       if (ref) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/tab/home']);
       }
     }
   }

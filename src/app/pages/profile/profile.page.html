@@ -1,13 +1,21 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Your profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="body">
+    @if (user && !isLoading) {
+      @if (user.photoURL) {
+        <img src="{{ user.photoURL }}" />
+      }@else {
+        <img src="/assets/img/person-circle-outline.svg" />
+      }
+      <h1>¡Hi {{ user.name }} {{ user.lastName }}!</h1>
+    }@else {
+      <ion-spinner></ion-spinner>
+    }
+
+  </div>
 </ion-content>

@@ -8,6 +8,7 @@ import { FireStoreService } from 'src/app/shared/services/fire-store-service';
 import { ToastService } from 'src/app/shared/services/toast-service';
 import { UserService } from 'src/app/shared/services/user-service';
 import {TranslatePipe, TranslateDirective} from "@ngx-translate/core";
+import { LocalStorageService } from 'src/app/shared/services/local-storage-service';
 
 @Component({
   selector: 'app-login',
@@ -25,10 +26,10 @@ export class LoginPage implements OnInit {
   });
 
   constructor(
-    private readonly databaseService:FireStoreService,
     private readonly router:Router,
     private readonly userService:UserService,
-    private readonly toastService:ToastService
+    private readonly toastService:ToastService,
+    private readonly localStorageService:LocalStorageService
   ) { }
 
   ngOnInit() {
@@ -42,31 +43,12 @@ export class LoginPage implements OnInit {
     const {email, password} = this.formGroup.value;
     const user = await this.userService.loginWithEmailAndPassword(email || '', password || '');
     if (user) {
-      this.router.navigate(['/home']);
+      this.localStorageService.set(Const.id, user.uid);
+      this.router.navigate(['/tab/home']);
     }
   }
 
   async registerGoogle() {
-    const user: User | undefined = await this.userService.registerWithGoogle();
-    if (user) {
-      const data = await this.databaseService.findUserByUid(user.uid);
-      if (!data) {
-        this.saveData(user);
-      }
-      this.router.navigate(['/home']);
-    }
-  }
-
-  private saveData(user: User) {
-    const nameArray = user.displayName?.split(' ');
-    if (nameArray && user.email) {
-      const data: IUser = {
-        name: nameArray[0],
-        lastName: nameArray[1],
-        email: user.email,
-        uid: user.uid
-      };
-      this.databaseService.setData(Const.userCollection, data);
-    }
+    await this.userService.registerWithGoogle();
   }
 }
