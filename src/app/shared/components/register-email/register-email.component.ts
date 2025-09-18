@@ -7,6 +7,7 @@ import { FireStoreService } from '../../services/fire-store-service';
 import { Const } from 'src/app/const/const';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage-service';
+import { IUserAuth } from 'src/app/interfaces/iuser-auth';
 
 @Component({
   selector: 'app-register-email',
@@ -34,22 +35,23 @@ export class RegisterEmailComponent implements OnInit {
 
   constructor(
     private readonly toastService: ToastService,
-    private readonly userService:UserService,
+    private readonly userService: UserService,
     private readonly storageService: FireStoreService,
-    private readonly router:Router,
+    private readonly router: Router,
+    private readonly localStorageService:LocalStorageService,
   ) { }
 
   ngOnInit() { }
 
-  getIsNext(isNext:boolean) {
+  getIsNext(isNext: boolean) {
     this.isNext = isNext;
   }
 
-  getIsReturn(isReturn:boolean){
+  getIsReturn(isReturn: boolean) {
     this.isNext = !isReturn;
   }
 
-  getIsCancel(isCancel:boolean){
+  getIsCancel(isCancel: boolean) {
     this.isCancel.emit(isCancel);
   }
 
@@ -64,11 +66,11 @@ export class RegisterEmailComponent implements OnInit {
       return;
     }
     //console.log(this.fromGroup.value);
-    const {email, password, name, lastName} = this.fromGroup.value;
+    const { email, password, name, lastName } = this.fromGroup.value;
 
     const uid = await this.userService.createUserEmailAndPassword(email || '', password || '');
     if (uid) {
-      const user:IUser = {
+      const user: IUser = {
         uid: uid,
         name: name || '',
         email: email || '',
@@ -78,6 +80,11 @@ export class RegisterEmailComponent implements OnInit {
       }
       const ref = await this.storageService.setData(Const.userCollection, user);
       if (ref) {
+        const userAuth: IUserAuth = {
+          uid: user.uid,
+          isInit: true,
+        };
+        this.localStorageService.set(Const.userAuth, userAuth);
         this.router.navigate(['/tab/home']);
       }
     }

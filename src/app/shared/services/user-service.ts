@@ -14,6 +14,7 @@ import { FireStoreService } from './fire-store-service';
 import { IUser } from 'src/app/interfaces/iuser';
 import { LocalStorageService } from './local-storage-service';
 import { Router } from '@angular/router';
+import { IUserAuth } from 'src/app/interfaces/iuser-auth';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class UserService {
   constructor(
     private readonly toastService: ToastService,
     private readonly databaseService: FireStoreService,
-    private readonly localStorageService:LocalStorageService,
-    private readonly router:Router,
+    private readonly localStorageService: LocalStorageService,
+    private readonly router: Router,
   ) { }
 
   async createUserEmailAndPassword(email: string, password: string) {
@@ -59,7 +60,11 @@ export class UserService {
         if (!data) {
           this.saveData(user);
         }
-        this.localStorageService.set(Const.id, data?.uid);
+        const userAuth: IUserAuth = {
+          uid: user.uid,
+          isInit: true,
+        };
+        this.localStorageService.set(Const.userAuth, userAuth);
         this.router.navigate(['/tab/home']);
       }
     } catch (error) {

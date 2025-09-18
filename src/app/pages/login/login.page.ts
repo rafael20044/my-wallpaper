@@ -9,6 +9,7 @@ import { ToastService } from 'src/app/shared/services/toast-service';
 import { UserService } from 'src/app/shared/services/user-service';
 import {TranslatePipe, TranslateDirective} from "@ngx-translate/core";
 import { LocalStorageService } from 'src/app/shared/services/local-storage-service';
+import { IUserAuth } from 'src/app/interfaces/iuser-auth';
 
 @Component({
   selector: 'app-login',
@@ -43,7 +44,11 @@ export class LoginPage implements OnInit {
     const {email, password} = this.formGroup.value;
     const user = await this.userService.loginWithEmailAndPassword(email || '', password || '');
     if (user) {
-      this.localStorageService.set(Const.id, user.uid);
+      const userAuth:IUserAuth = {
+        uid: user.uid,
+        isInit: true,
+      };
+      this.localStorageService.set(Const.userAuth, userAuth);
       this.router.navigate(['/tab/home']);
     }
   }
