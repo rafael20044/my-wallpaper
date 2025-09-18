@@ -7,6 +7,7 @@ import { IUser } from 'src/app/interfaces/iuser';
 import { FireStoreService } from 'src/app/shared/services/fire-store-service';
 import { ToastService } from 'src/app/shared/services/toast-service';
 import { UserService } from 'src/app/shared/services/user-service';
+import {TranslatePipe, TranslateDirective} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',

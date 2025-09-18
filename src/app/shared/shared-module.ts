@@ -14,6 +14,7 @@ import { RegisterEmail2Component } from './components/register-email2/register-e
 import { RouterLink } from '@angular/router';
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { TabComponent } from './components/tab/tab.component';
+import { LocalStorageService } from './services/local-storage-service';
 
 
 
@@ -33,6 +34,7 @@ import { TabComponent } from './components/tab/tab.component';
     ToastService,
     FireStoreService,
     RouterLink,
+    LocalStorageService,
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
 export enum Const{
-    userCollection = 'users'
+    userCollection = 'users',
+    configurationKey = 'configuration'
 }
