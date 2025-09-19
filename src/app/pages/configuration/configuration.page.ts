@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/shared/services/user-service';
 
 @Component({
   selector: 'app-configuration',
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigurationPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly userService:UserService
+  ) { }
 
   ngOnInit() {
+  }
+
+  salir(){
+    this.userService.mySingOut();
   }
 
 }

@@ -66,7 +66,9 @@ export class UserService {
         }
         const userAuth: IUserAuth = {
           uid: user.uid,
-          isInit: true,
+          isInitProfile: true,
+          isInitConfi: true,
+          isInitHome: true,
         };
         this.localStorageService.set(Const.userAuth, userAuth);
         this.router.navigate(['/tab/home']);
@@ -81,10 +83,10 @@ export class UserService {
     signOut(this.auth)
   }
 
-  async update(data:IUserUpdate){
+  async update(data: IUserUpdate) {
     const user = this.getUser();
     user.subscribe({
-      next: (value) =>{
+      next: (value) => {
         if (value) {
           this.updateDB(value.uid, data);
         }
@@ -93,11 +95,11 @@ export class UserService {
     });
   }
 
-  private getUser(){
+  private getUser() {
     return user(this.auth);
   }
 
-  private async updateDB(uid:string, data:IUserUpdate){
+  private async updateDB(uid: string, data: IUserUpdate) {
     await this.databaseService.updateData(uid, data);
   }
 
@@ -110,7 +112,9 @@ export class UserService {
         email: user.email,
         uid: user.uid,
         provider: 'google',
-        photoURL: user.photoURL || ''
+        photoURL: user.photoURL || '',
+        wallpapers: [],
+        pathPhoto: user.photoURL || ''
       };
       this.databaseService.setData(Const.userCollection, data);
     }

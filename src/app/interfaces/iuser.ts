@@ -4,5 +4,12 @@ export interface IUser {
     lastName:string;
     email:string;
     provider:string;
-    photoURL:string
+    photoURL:string;
+    pathPhoto:string
+    wallpapers: IWallpaper[]
+}
+
+interface IWallpaper{
+    path:string,
+    url:string
 }

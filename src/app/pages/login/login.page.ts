@@ -46,7 +46,9 @@ export class LoginPage implements OnInit {
     if (user) {
       const userAuth:IUserAuth = {
         uid: user.uid,
-        isInit: true,
+        isInitProfile: true,
+        isInitConfi: true,
+        isInitHome: true,
       };
       this.localStorageService.set(Const.userAuth, userAuth);
       this.router.navigate(['/tab/home']);

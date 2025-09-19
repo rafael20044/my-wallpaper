@@ -38,7 +38,7 @@ export class RegisterEmailComponent implements OnInit {
     private readonly userService: UserService,
     private readonly storageService: FireStoreService,
     private readonly router: Router,
-    private readonly localStorageService:LocalStorageService,
+    private readonly localStorageService: LocalStorageService,
   ) { }
 
   ngOnInit() { }
@@ -76,13 +76,17 @@ export class RegisterEmailComponent implements OnInit {
         email: email || '',
         lastName: lastName || '',
         provider: 'email',
-        photoURL: ''
+        photoURL: '',
+        wallpapers: [],
+        pathPhoto: ''
       }
       const ref = await this.storageService.setData(Const.userCollection, user);
       if (ref) {
         const userAuth: IUserAuth = {
           uid: user.uid,
-          isInit: true,
+          isInitProfile: true,
+          isInitConfi: true,
+          isInitHome: true,
         };
         this.localStorageService.set(Const.userAuth, userAuth);
         this.router.navigate(['/tab/home']);

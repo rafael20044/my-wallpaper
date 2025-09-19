@@ -48,10 +48,10 @@ export class ProfilePage implements OnInit {
   async ngOnInit() {
     this.userAuth = this.localStorageService.get(Const.userAuth);
     if (this.userAuth) {
-      this.isLoading = (!this.user || this.userAuth.isInit);
+      this.isLoading = (!this.user || this.userAuth.isInitProfile);
       //console.log(this.isLoading)
       await this.loadUser();
-      this.userAuth.isInit = false;
+      this.userAuth.isInitProfile = false;
       this.localStorageService.set(Const.userAuth, this.userAuth);
     }
     if (this.user) {
@@ -79,7 +79,9 @@ export class ProfilePage implements OnInit {
     let data: IUserUpdate = {
       name: this.nameControl.value || '',
       lastName: this.lastNameControl.value || '',
-      photoURL: this.user?.photoURL || ''
+      photoURL: this.user?.photoURL || '',
+      wallpapers: this.user?.wallpapers || [],
+      pathPhoto: this.user?.pathPhoto || '',
     }
     this.userService.update(data);
     if (this.user) {
@@ -101,22 +103,24 @@ export class ProfilePage implements OnInit {
     if (img && img.data) {
       img.name = img.name.replace(/\s+/g, '-');
       //console.log(img.name)
-      const url = await this.supabase.upload(
+      const dataUrl = await this.supabase.upload(
         'img',
-        'images',
+        'photos',
         `${Date.now()}-${img.name}`,
         img.data,
         img.mimeType,
 
       );
-      if (url) {
+      if (dataUrl) {
         let data: IUserUpdate = {
           name: this.nameControl.value || '',
           lastName: this.lastNameControl.value || '',
-          photoURL: url,
+          photoURL: dataUrl.url,
+          wallpapers: this.user?.wallpapers || [],
+          pathPhoto: dataUrl.path || '',
         }
         this.userService.update(data);
-        this.urlPhoto = url;
+        this.urlPhoto = dataUrl.url;
         this.toastService.presentToast('Updated', 'top', 'primary');
       }
     }

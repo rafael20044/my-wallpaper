@@ -1,14 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>My wallpaper</ion-title>
+    <ion-title>Your wallpaper</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" id="main-content" class="ion-padding">
   <div class="body">
-    <p (click)="signOut()">Salir</p>
-    <app-floating-button />
+    @if (user && !isLoading) {
+      @if (user.wallpapers.length === 0) {
+        <h1>use the button if you wanna add wallpapers</h1>
+      }@else {
+        <div class="grid">
+          @for (item of user.wallpapers; track $index) {
+            <app-card urlImg="{{item.url}}" />
+          }
+
+        </div>
+      }
+      <app-floating-button (click)="pickImg()" />
+    }@else {
+      <ion-spinner />
+    }
   </div>
 </ion-content>

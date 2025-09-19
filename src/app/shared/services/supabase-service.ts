@@ -25,14 +25,17 @@ export class SupabaseService {
     return await this.getSignUrl(bucket, data.path);
   }
 
-  async getSignUrl(bucket: string, path: string): Promise<string | undefined> {
+  async getSignUrl(bucket: string, path: string): Promise<{url:string, path:string} | undefined> {
     //console.log(`path que le mandamos a la funcion para firmar ${path}`)
-    const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, 60);
+    const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, 60 * 60);
     if (error) {
       console.log(error.message);
       return;
     }
-    return data?.signedUrl || '';
+    return {
+      url:data?.signedUrl || '',
+      path: path,
+    };
   }
 
   async isSignedUrlValid(url: string) {

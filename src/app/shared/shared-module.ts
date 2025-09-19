@@ -15,6 +15,7 @@ import { RouterLink } from '@angular/router';
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { TabComponent } from './components/tab/tab.component';
 import { LocalStorageService } from './services/local-storage-service';
+import { CardComponent } from './components/card/card.component';
 
 
 
@@ -28,6 +29,7 @@ import { LocalStorageService } from './services/local-storage-service';
     RegisterEmail2Component,
     FloatingButtonComponent,
     TabComponent,
+    CardComponent,
   ],
   providers: [
     UserService, 
@@ -49,6 +51,7 @@ import { LocalStorageService } from './services/local-storage-service';
     RegisterEmailComponent,
     FloatingButtonComponent,
     TabComponent,
+    CardComponent,
   ],
 })
 export class SharedModule { }
