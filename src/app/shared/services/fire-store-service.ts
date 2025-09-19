@@ -1,5 +1,14 @@
 import { Injectable } from '@angular/core';
-import { addDoc, getFirestore, collection, query, where, getDoc, getDocs} from '@angular/fire/firestore';
+import { 
+  addDoc, 
+  getFirestore, 
+  collection, 
+  query, where, 
+  getDocs, 
+  DocumentData, 
+  updateDoc,
+  doc
+} from '@angular/fire/firestore';
 import { Const } from 'src/app/const/const';
 import { app } from 'src/app/core/config/firebase.confi';
 import { IUser } from 'src/app/interfaces/iuser';
@@ -31,6 +40,29 @@ export class FireStoreService {
     let data:IUser | null = null;
     result.forEach(doc => data = doc.data() as IUser);
     return data;
+  }
+
+  async updateData(uid:string, data:any){
+    const idDoc = await this.findDoc(uid) || '';
+    if (idDoc) {
+      const ref = doc(this.db, Const.userCollection, idDoc);
+      await updateDoc(ref, data);
+      return true;
+    }
+    return false;
+  }
+
+  private async findDoc(uid:string){
+    const ref = collection(this.db, Const.userCollection);
+    const q = query(ref, where('uid', '==', uid));
+    const result = await getDocs(q);
+    if (result.empty) {
+      console.log('documento no encontrado');
+      return;
+    }
+    let doc:string = '';
+    result.forEach(d => doc = d.id);
+    return doc;
   }
 
 }

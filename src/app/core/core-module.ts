@@ -1,14 +1,20 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceService } from './service/device-service';
+import { FilePickerService } from './service/file-picker-service';
 
 
 
 @NgModule({
   declarations: [],
-  providers: [DeviceService],
+  providers: [DeviceService, FilePickerService],
   imports: [
     CommonModule
   ]
 })
-export class CoreModule { }
+export class CoreModule implements OnInit{
+  ngOnInit() {
+    console.log("holaaa");
+  }
+
+}

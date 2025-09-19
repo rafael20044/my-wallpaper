@@ -4,6 +4,8 @@ import { IConfiguration } from './interfaces/iconfiguration';
 import { LocalStorageService } from './shared/services/local-storage-service';
 import { TranslateService, TranslatePipe, TranslateDirective } from "@ngx-translate/core";
 import { Const } from './const/const';
+import { FilePickerService } from './core/service/file-picker-service';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +17,17 @@ export class AppComponent implements OnInit{
   constructor(
     private readonly deviceService:DeviceService,
     private readonly localStorageService:LocalStorageService,
-    //private readonly translateService:TranslateService
+    //private readonly translateService:TranslateService,
+    private readonly file:FilePickerService
   ){}
 
-  ngOnInit(){
+  async ngOnInit(){
     this.configuration();
     //this.initTranslateService();
+    if (Capacitor.isNativePlatform()) {
+      console.log('si')
+      await this.file.permission();
+    }
   }
   
   private async configuration(){

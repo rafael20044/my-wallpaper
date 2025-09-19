@@ -5,7 +5,10 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   signOut,
-  User
+  User,
+  updatePassword,
+  updateEmail,
+  user,
 } from '@angular/fire/auth';
 import { app } from 'src/app/core/config/firebase.confi';
 import { ToastService } from './toast-service';
@@ -15,6 +18,7 @@ import { IUser } from 'src/app/interfaces/iuser';
 import { LocalStorageService } from './local-storage-service';
 import { Router } from '@angular/router';
 import { IUserAuth } from 'src/app/interfaces/iuser-auth';
+import { IUserUpdate } from 'src/app/interfaces/iuser-update';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +79,26 @@ export class UserService {
 
   async mySingOut() {
     signOut(this.auth)
+  }
+
+  async update(data:IUserUpdate){
+    const user = this.getUser();
+    user.subscribe({
+      next: (value) =>{
+        if (value) {
+          this.updateDB(value.uid, data);
+        }
+      },
+      error: (err) => console.log(err)
+    });
+  }
+
+  private getUser(){
+    return user(this.auth);
+  }
+
+  private async updateDB(uid:string, data:IUserUpdate){
+    await this.databaseService.updateData(uid, data);
   }
 
   private saveData(user: User) {
