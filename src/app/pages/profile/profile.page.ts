@@ -79,6 +79,7 @@ export class ProfilePage implements OnInit {
     let data: IUserUpdate = {
       name: this.nameControl.value || '',
       lastName: this.lastNameControl.value || '',
+      photoURL: this.user?.photoURL || ''
     }
     this.userService.update(data);
     if (this.user) {
@@ -101,14 +102,23 @@ export class ProfilePage implements OnInit {
       img.name = img.name.replace(/\s+/g, '-');
       //console.log(img.name)
       const url = await this.supabase.upload(
-        'img', 
-        'images', 
-        `${Date.now()}-${img.name}`, 
-        img.data, 
+        'img',
+        'images',
+        `${Date.now()}-${img.name}`,
+        img.data,
         img.mimeType,
-        
+
       );
-      console.log(url)
+      if (url) {
+        let data: IUserUpdate = {
+          name: this.nameControl.value || '',
+          lastName: this.lastNameControl.value || '',
+          photoURL: url,
+        }
+        this.userService.update(data);
+        this.urlPhoto = url;
+        this.toastService.presentToast('Updated', 'top', 'primary');
+      }
     }
   }
 
