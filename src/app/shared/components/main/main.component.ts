@@ -42,14 +42,6 @@ export class MainComponent implements OnInit {
     }
   }
 
-  ionViewWillEnter() {
-    this.ngOnInit();
-    console.log('funciono')
-  }
-
-  signOut() {
-    this.userService.mySingOut();
-  }
 
   async pickImg() {
     const img = await this.file.pickImage();
