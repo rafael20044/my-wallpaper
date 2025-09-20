@@ -13,6 +13,7 @@ import { FilePickerService } from './service/file-picker-service';
   ]
 })
 export class CoreModule implements OnInit{
+  constructor(){}
   ngOnInit() {
     console.log("holaaa");
   }

@@ -25,7 +25,6 @@ export class AppComponent implements OnInit{
     this.configuration();
     //this.initTranslateService();
     if (Capacitor.isNativePlatform()) {
-      console.log('si')
       await this.file.permission();
     }
   }

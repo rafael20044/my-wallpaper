@@ -19,9 +19,10 @@ export class FilePickerService {
 
   async pickImage(){
     try {
-      const images = await FilePicker.pickImages({
+      const images = await FilePicker.pickFiles({
+        types: ['image/*'],
         limit: 1,
-        readData: true,
+        readData: true
       });
       const img = images.files[0];
       return{
@@ -35,5 +36,4 @@ export class FilePickerService {
       return;
     }
   }
-  
 }
