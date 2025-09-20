@@ -11,14 +11,6 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule)
-  },
-  {
-    path: 'configuration',
-    loadChildren: () => import('./pages/configuration/configuration.module').then(m => m.ConfigurationPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
     canActivate: [isLoggedGuard]

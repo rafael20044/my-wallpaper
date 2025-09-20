@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
+import { ToastNative } from 'src/app/core/service/toast-native';
+import myPlugin from 'src/plugins/MyPlugin';
 
 @Component({
   selector: 'app-card',
@@ -11,7 +14,10 @@ export class CardComponent  implements OnInit {
 
   @Input() urlImg:string = '';
 
-  constructor(private sheetController:ActionSheetController) { }
+  constructor(
+    private sheetController:ActionSheetController,
+    private toastNative:ToastNative,
+  ) { }
 
   ngOnInit() {}
 
@@ -41,8 +47,12 @@ export class CardComponent  implements OnInit {
     await sheet.present();
   }
 
-  private setWallpaper(target:TargetType){
-    console.log(target)
+  private async setWallpaper(target:TargetType){
+    if (Capacitor.isNativePlatform()) {
+      const isOk = await myPlugin.execute({imgUrl: this.urlImg, target: target});
+      this.toastNative.showToast((isOk)? `Wallpaper set ${target}`  : 'Failed to set wallpapers', 'long');
+    }
+
   }
 
 }

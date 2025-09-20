@@ -12,14 +12,12 @@ public class MyPlugin extends Plugin {
 
   @PluginMethod()
   public void execute(PluginCall pluginCall){
-    var url = pluginCall.getString("url");
-    var taget = pluginCall.getString("target");
+    var url = pluginCall.getString("imgUrl");
+    var target = pluginCall.getString("target");
     var wallpaper = new Wallpaper(getContext());
-    var isOk = wallpaper.setWallpaper(url, taget);
+    var isOk = wallpaper.setWallpaper(url, target);
     var res = new JSObject();
     res.put("isOk", isOk);
-    if (isOk) {
-      pluginCall.resolve(res);
-    }
+    pluginCall.resolve(res);
   }
 }

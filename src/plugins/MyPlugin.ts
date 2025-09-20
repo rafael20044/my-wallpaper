@@ -1,7 +1,7 @@
 import { registerPlugin } from '@capacitor/core';
 
 interface IData{
-    excute: (option: {imgUrl: string; target?: 'home' | 'lock' | 'both'}) => Promise<{isOk:boolean}>
+    execute: (option: {imgUrl: string; target?: 'home' | 'lock' | 'both'}) => Promise<{isOk:boolean}>
 }
 
 const myPlugin = registerPlugin<IData>('MyPlugin');
