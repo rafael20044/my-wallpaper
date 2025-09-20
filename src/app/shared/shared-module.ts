@@ -13,9 +13,11 @@ import { RegisterEmail1Component } from './components/register-email1/register-e
 import { RegisterEmail2Component } from './components/register-email2/register-email2.component';
 import { RouterLink } from '@angular/router';
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
-import { TabComponent } from './components/tab/tab.component';
 import { LocalStorageService } from './services/local-storage-service';
 import { CardComponent } from './components/card/card.component';
+import { MainComponent } from './components/main/main.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
 
 
 
@@ -28,8 +30,10 @@ import { CardComponent } from './components/card/card.component';
     RegisterEmail1Component,
     RegisterEmail2Component,
     FloatingButtonComponent,
-    TabComponent,
     CardComponent,
+    MainComponent,
+    ProfileComponent,
+    ConfigurationComponent,
   ],
   providers: [
     UserService, 
@@ -50,8 +54,10 @@ import { CardComponent } from './components/card/card.component';
     OpcionRegisterComponent, 
     RegisterEmailComponent,
     FloatingButtonComponent,
-    TabComponent,
     CardComponent,
+    MainComponent,
+    ProfileComponent,
+    ConfigurationComponent,
   ],
 })
 export class SharedModule { }

@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
         isInitHome: true,
       };
       this.localStorageService.set(Const.userAuth, userAuth);
-      this.router.navigate(['/tab/home']);
+      this.router.navigate(['/home']);
     }
   }
 

@@ -1,24 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Your wallpaper</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content [fullscreen]="true" id="main-content" class="ion-padding">
-  <div class="body">
-    @if (user && !isLoading) {
-      @if (user.wallpapers.length === 0) {
-        <h1>use the button if you wanna add wallpapers</h1>
-      }@else {
-        <div class="grid">
-          @for (item of user.wallpapers; track $index) {
-            <app-card urlImg="{{item.url}}" />
-          }
+<ion-tabs>
 
-        </div>
-      }
-      <app-floating-button (click)="pickImg()" />
-    }@else {
-      <ion-spinner />
-    }
-  </div>
-</ion-content>
+  <ion-tab tab="home">
+    <app-main />
+  </ion-tab>
+
+  <ion-tab tab="profile">
+    <app-profile />
+  </ion-tab>
+
+  <ion-tab tab="configuration">
+    <app-configuration />
+  </ion-tab>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home-outline"></ion-icon>
+      Home
+    </ion-tab-button>
+    <ion-tab-button tab="profile">
+      <ion-icon name="person-outline"></ion-icon>
+      Profile
+    </ion-tab-button>
+    <ion-tab-button tab="configuration">
+      <ion-icon name="cog-outline"></ion-icon>
+      Configuration
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
