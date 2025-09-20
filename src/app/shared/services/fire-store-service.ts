@@ -34,7 +34,7 @@ export class FireStoreService {
   }
 
   async findUserByUid(uid:string):Promise<IUser | null>{
-    const ref = collection(this.db, Const.userCollection);
+    const ref = collection(this.db, Const.USER_COLLECTION);
     const q = query(ref, where('uid', '==', uid));
     const result = await getDocs(q);
     let data:IUser | null = null;
@@ -45,7 +45,7 @@ export class FireStoreService {
   async updateData(uid:string, data:any){
     const idDoc = await this.findDoc(uid) || '';
     if (idDoc) {
-      const ref = doc(this.db, Const.userCollection, idDoc);
+      const ref = doc(this.db, Const.USER_COLLECTION, idDoc);
       await updateDoc(ref, data);
       return true;
     }
@@ -53,7 +53,7 @@ export class FireStoreService {
   }
 
   private async findDoc(uid:string){
-    const ref = collection(this.db, Const.userCollection);
+    const ref = collection(this.db, Const.USER_COLLECTION);
     const q = query(ref, where('uid', '==', uid));
     const result = await getDocs(q);
     if (result.empty) {

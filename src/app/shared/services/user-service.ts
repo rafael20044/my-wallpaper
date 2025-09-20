@@ -70,7 +70,7 @@ export class UserService {
           isInitConfi: true,
           isInitHome: true,
         };
-        this.localStorageService.set(Const.userAuth, userAuth);
+        this.localStorageService.set(Const.USER_AUTH, userAuth);
         this.router.navigate(['/tab/home']);
       }
     } catch (error) {
@@ -116,7 +116,7 @@ export class UserService {
         wallpapers: [],
         pathPhoto: user.photoURL || ''
       };
-      this.databaseService.setData(Const.userCollection, data);
+      this.databaseService.setData(Const.USER_COLLECTION, data);
     }
   }
 

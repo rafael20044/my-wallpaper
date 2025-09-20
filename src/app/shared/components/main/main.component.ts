@@ -21,7 +21,6 @@ export class MainComponent implements OnInit {
   isLoading: boolean = false;
   private userAuth: IUserAuth | null = null;
 
-
   constructor(
     private readonly userService: UserService,
     private readonly file: FilePickerService,
@@ -36,12 +35,12 @@ export class MainComponent implements OnInit {
     if (this.userAuth) {
       this.isLoading = (!this.user || this.userAuth.isInitHome);
       await this.loadUser();
+      await this.updateUrl();
       this.userAuth.isInitHome = false;
       this.isLoading = false;
-      this.localStorage.set(Const.userAuth, this.userAuth);
+      this.localStorage.set(Const.USER_AUTH, this.userAuth);
     }
   }
-
 
   async pickImg() {
     const img = await this.file.pickImage();
@@ -59,7 +58,6 @@ export class MainComponent implements OnInit {
     }
   }
 
-
   private async loadUser() {
     if (this.userAuth) {
       this.user = await this.database.findUserByUid(this.userAuth.uid);
@@ -67,7 +65,29 @@ export class MainComponent implements OnInit {
   }
 
   private loadUserAuth() {
-    this.userAuth = this.localStorage.get<IUserAuth>(Const.userAuth);
+    this.userAuth = this.localStorage.get<IUserAuth>(Const.USER_AUTH);
+  }
+
+  private async updateUrl(){
+    if (this.user) {
+      const {pathPhoto, photoURL} = this.user;
+      const wallpapers = this.user.wallpapers;
+      const isValid = await this.supabase.isSignedUrlValid(photoURL);
+      if (!isValid) {
+        const newPhotoUrl = await this.supabase.getSignUrl(Const.BUCKET, pathPhoto);
+        this.user.photoURL = newPhotoUrl?.url || '';
+        console.log(this.user.photoURL);
+      }
+      for(let i = 0; i < wallpapers.length; i++){
+        const {path, url} = wallpapers[i];
+        const isValid = await this.supabase.isSignedUrlValid(url);
+        if (!isValid) {
+          const newUrl = await this.supabase.getSignUrl(Const.BUCKET, path);
+          wallpapers[i].url = newUrl?.url || '';
+        }
+      }
+      await this.database.updateData(this.user.uid, this.user);
+    }
   }
 
 }

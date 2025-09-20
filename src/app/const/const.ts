@@ -1,5 +1,6 @@
 export enum Const{
-    userCollection = 'users',
-    configurationKey = 'configuration',
-    userAuth = 'userAuth',
+    USER_COLLECTION = 'users',
+    CONFIGURATION_KEY = 'configuration',
+    USER_AUTH = 'userAuth',
+    BUCKET = 'img',
 }

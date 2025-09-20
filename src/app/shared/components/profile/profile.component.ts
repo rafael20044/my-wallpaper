@@ -46,13 +46,13 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.userAuth = this.localStorageService.get(Const.userAuth);
+    this.userAuth = this.localStorageService.get(Const.USER_AUTH);
     if (this.userAuth) {
       this.isLoading = (!this.user || this.userAuth.isInitProfile);
       //console.log(this.isLoading)
       await this.loadUser();
       this.userAuth.isInitProfile = false;
-      this.localStorageService.set(Const.userAuth, this.userAuth);
+      this.localStorageService.set(Const.USER_AUTH, this.userAuth);
     }
     if (this.user) {
       this.urlPhoto = (this.user.photoURL) ? this.user.photoURL : '/assets/img/person-circle-outline.svg';
@@ -104,7 +104,7 @@ export class ProfileComponent implements OnInit {
       img.name = img.name.replace(/\s+/g, '-');
       //console.log(img.name)
       const dataUrl = await this.supabase.upload(
-        'img',
+        Const.BUCKET,
         'photos',
         `${Date.now()}-${img.name}`,
         img.data,

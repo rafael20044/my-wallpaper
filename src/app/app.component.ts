@@ -22,14 +22,14 @@ export class AppComponent implements OnInit{
   ){}
 
   async ngOnInit(){
-    this.configuration();
+    /*this.configuration();
     //this.initTranslateService();
     if (Capacitor.isNativePlatform()) {
       await this.file.permission();
-    }
+    }*/
   }
   
-  private async configuration(){
+  /*private async configuration(){
     const code = await this.deviceService.getLanguageCode();
     const confi:IConfiguration | null = this.localStorageService.get(Const.configurationKey);
     if (!confi) {
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
       this.localStorageService.set(Const.configurationKey, confiDefault);
     }
     //console.log(code);
-  }
+  }*/
 
   /*private initTranslateService(){
     this.translateService.addLangs(['en', 'es']);

@@ -80,7 +80,7 @@ export class RegisterEmailComponent implements OnInit {
         wallpapers: [],
         pathPhoto: ''
       }
-      const ref = await this.storageService.setData(Const.userCollection, user);
+      const ref = await this.storageService.setData(Const.USER_COLLECTION, user);
       if (ref) {
         const userAuth: IUserAuth = {
           uid: user.uid,
@@ -88,7 +88,7 @@ export class RegisterEmailComponent implements OnInit {
           isInitConfi: true,
           isInitHome: true,
         };
-        this.localStorageService.set(Const.userAuth, userAuth);
+        this.localStorageService.set(Const.USER_COLLECTION, userAuth);
         this.router.navigate(['/tab/home']);
       }
     }

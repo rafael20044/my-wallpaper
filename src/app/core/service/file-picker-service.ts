@@ -10,10 +10,8 @@ export class FilePickerService {
   constructor(private toastNative:ToastNative){}
 
   async permission(){
-
     try {
       await FilePicker.requestPermissions();
-      this.toastNative.showToast('ok', 'long');
     } catch (error) {
       await this.toastNative.showToast('error requesting permission ' + error, 'long');
     }
