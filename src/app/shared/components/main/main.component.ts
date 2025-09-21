@@ -74,23 +74,23 @@ export class MainComponent implements OnInit {
     if (this.user) {
       const { pathPhoto, photoURL } = this.user;
       const wallpapers = this.user.wallpapers;
-      if (pathPhoto && photoURL && wallpapers.length > 0) {
+      if (pathPhoto && photoURL) {
         const isValid = await this.supabase.isSignedUrlValid(photoURL);
         if (!isValid) {
           const newPhotoUrl = await this.supabase.getSignUrl(Const.BUCKET, pathPhoto);
           this.user.photoURL = newPhotoUrl?.url || '';
-          console.log(this.user.photoURL);
+          //console.log(this.user.photoURL);
         }
-        for (let i = 0; i < wallpapers.length; i++) {
-          const { path, url } = wallpapers[i];
-          const isValid = await this.supabase.isSignedUrlValid(url);
-          if (!isValid) {
-            const newUrl = await this.supabase.getSignUrl(Const.BUCKET, path);
-            wallpapers[i].url = newUrl?.url || '';
-          }
-        }
-        await this.database.updateData(this.user.uid, this.user);
       }
+      for (let i = 0; i < wallpapers.length; i++) {
+        const { path, url } = wallpapers[i];
+        const isValid = await this.supabase.isSignedUrlValid(url);
+        if (!isValid) {
+          const newUrl = await this.supabase.getSignUrl(Const.BUCKET, path);
+          wallpapers[i].url = newUrl?.url || '';
+        }
+      }
+      await this.database.updateData(this.user.uid, this.user);
     }
   }
 

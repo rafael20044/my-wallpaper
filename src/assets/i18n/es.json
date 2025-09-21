@@ -56,5 +56,14 @@
         "cancel": "Cancelar",
         "1":"Llene los campos de manera correcta",
         "2": "Las contraseñas no coinciden"
+    },
+    "card":{
+        "opcion": "opciones",
+        "home": "Pantalla principal",
+        "lock": "Pantalla de bloqueo",
+        "both": "Ambas",
+        "cancel": "Cancelar",
+        "Ok": "Wallpaper colocado en",
+        "error": "Error al agregar el wallpaper"
     }
 }

@@ -8,12 +8,13 @@ import { IConfiguration } from '../interfaces/iconfiguration';
 import { LocalStorageService } from '../shared/services/local-storage-service';
 import { Const } from '../const/const';
 import { Translate } from './service/translate';
+import { StatusBarService } from './service/status-bar-service';
 
 
 
 @NgModule({
   declarations: [],
-  providers: [DeviceService, FilePickerService, ToastService],
+  providers: [DeviceService, FilePickerService, ToastService, StatusBarService],
   imports: [
     CommonModule
   ]
@@ -24,6 +25,7 @@ export class CoreModule implements OnInit {
     private readonly deviceService:DeviceService,
     private readonly localStorageService:LocalStorageService,
     private readonly transalte:Translate,
+    private readonly statusBarService:StatusBarService
   ) {
     this.ngOnInit();
   }
@@ -35,6 +37,7 @@ export class CoreModule implements OnInit {
   private async permission() {
     if (Capacitor.isNativePlatform()) {
       await this.file.permission();
+      await this.statusBarService.modifyStatusBar();
     }
   }
 

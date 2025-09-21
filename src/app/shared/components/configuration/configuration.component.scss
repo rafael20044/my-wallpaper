@@ -1,0 +1,122 @@
+ion-header {
+    ion-toolbar {
+        --background: #ffffff;
+        --border-width: 0 0 0.0625rem 0;
+        --border-color: #e0e0e0;
+
+        ion-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+    }
+}
+
+ion-content {
+    --background: #f8f9fa;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --padding-top: 1rem;
+    --padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 1.5rem;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+app-select {
+    width: 100%;
+}
+
+app-button {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+@media (max-height: 40rem) {
+    ion-content {
+        --padding-top: 0.5rem;
+        --padding-bottom: 0.5rem;
+    }
+
+    div {
+        padding: 1.25rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+        margin: 0 0 1.25rem;
+    }
+
+    form {
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 22rem) {
+    div {
+        padding: 1rem;
+        border-radius: 0.8rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+        margin: 0 0 1rem;
+    }
+
+    form {
+        gap: 1rem;
+    }
+}
+
+app-select:focus-within {
+    outline: 0.125rem solid #3880ff;
+    outline-offset: 0.125rem;
+    border-radius: 0.5rem;
+}
+
+form {
+    transition: all 0.3s ease;
+}
+
+@media (max-height: 30rem) and (orientation: landscape) {
+    ion-content {
+        --padding-top: 0.25rem;
+        --padding-bottom: 0.25rem;
+    }
+
+    div {
+        padding: 1rem;
+    }
+
+    p {
+        margin: 0 0 0.75rem;
+    }
+
+    form {
+        gap: 1rem;
+    }
+}

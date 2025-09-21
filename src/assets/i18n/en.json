@@ -56,5 +56,14 @@
         "cancel": "Cancel",
         "1":"Fill in all fields correctly",
         "2": "Passwords do not match"
+    },
+    "card":{
+        "opcion": "Opcions",
+        "home": "Home screen",
+        "lock": "Lock screen",
+        "both": "Both",
+        "cancel": "Cancel",
+        "Ok": "Wallpaper set",
+        "error": "Failed to set wallpapers"
     }
 }
