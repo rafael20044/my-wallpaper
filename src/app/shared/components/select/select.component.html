@@ -1,0 +1,5 @@
+<ion-select [label]="label" label-placement="floating" [value]="value" [formControl]="control" >
+  @for (item of languages; track $index) {
+    <ion-select-option value="{{item.code}}">{{ item.name }}</ion-select-option>
+  }
+</ion-select>

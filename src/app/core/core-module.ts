@@ -2,20 +2,50 @@ import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeviceService } from './service/device-service';
 import { FilePickerService } from './service/file-picker-service';
+import { ToastService } from '../shared/services/toast-service';
+import { Capacitor } from '@capacitor/core';
+import { IConfiguration } from '../interfaces/iconfiguration';
+import { LocalStorageService } from '../shared/services/local-storage-service';
+import { Const } from '../const/const';
 
 
 
 @NgModule({
   declarations: [],
-  providers: [DeviceService, FilePickerService],
+  providers: [DeviceService, FilePickerService, ToastService],
   imports: [
     CommonModule
   ]
 })
-export class CoreModule implements OnInit{
-  constructor(){}
+export class CoreModule implements OnInit {
+  constructor(
+    private readonly file: FilePickerService,
+    private readonly deviceService:DeviceService,
+    private readonly localStorageService:LocalStorageService,
+  ) {
+    this.ngOnInit();
+  }
   ngOnInit() {
-    console.log("holaaa");
+    this.permission();
+    this.configuration();
+  }
+
+  private async permission() {
+    if (Capacitor.isNativePlatform()) {
+      await this.file.permission();
+    }
+  }
+
+  private async configuration() {
+    const confi: IConfiguration | null = this.localStorageService.get(Const.CONFIGURATION_KEY);
+    if (!confi) {
+      const code = await this.deviceService.getLanguageCode();
+      const confiDefault: IConfiguration = {
+        thema: 'light',
+        languageCode: (code.value === 'es' || code.value === 'en') ? code.value : 'en',
+      };
+      this.localStorageService.set(Const.CONFIGURATION_KEY, confiDefault);
+    }
   }
 
 }

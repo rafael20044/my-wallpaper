@@ -18,6 +18,8 @@ import { CardComponent } from './components/card/card.component';
 import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { SelectComponent } from './components/select/select.component';
+import { TranslateService } from './services/translate-service';
 
 
 
@@ -34,6 +36,7 @@ import { ConfigurationComponent } from './components/configuration/configuration
     MainComponent,
     ProfileComponent,
     ConfigurationComponent,
+    SelectComponent,
   ],
   providers: [
     UserService, 
@@ -41,6 +44,7 @@ import { ConfigurationComponent } from './components/configuration/configuration
     FireStoreService,
     RouterLink,
     LocalStorageService,
+    TranslateService,
   ],
   imports: [
     CommonModule,

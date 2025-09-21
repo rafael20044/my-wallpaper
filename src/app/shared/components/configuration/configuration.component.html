@@ -1,12 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Configuration</ion-title>
+    @if (translationJson) {
+      <ion-title>{{ translationJson.Configuration.Configuration }}</ion-title>
+    }
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" style="height: auto;">
-  <div class="">
-    <p>HOLALLALA</p>
-    <h1 (click)="salir()">Configuracioneess</h1>
-  </div>
+<ion-content style="height: 100vh;" class="ion-padding">
+  @if (translationJson) {
+    <div class="">
+      <p>{{ translationJson.Configuration.ChangeTheLanguage }}</p>
+      <form (ngSubmit)="doSubmit()">
+        <app-select [languages]="languages" [value]="value" label="{{ translationJson.Configuration.Languages }}" [control]="selectControl" />
+        <app-button text="{{ translationJson.Configuration.Save }}" type="submit"/>
+      </form>
+    </div>
+  }
 </ion-content>

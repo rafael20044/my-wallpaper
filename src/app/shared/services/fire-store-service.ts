@@ -5,7 +5,6 @@ import {
   collection, 
   query, where, 
   getDocs, 
-  DocumentData, 
   updateDoc,
   doc
 } from '@angular/fire/firestore';
