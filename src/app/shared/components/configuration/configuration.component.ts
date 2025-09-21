@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user-service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ILanguage } from 'src/app/interfaces/ilanguage';
 import { LocalStorageService } from '../../services/local-storage-service';
 import { Const } from 'src/app/const/const';
 import { IConfiguration } from 'src/app/interfaces/iconfiguration';
 import { FormControl } from '@angular/forms';
-import { TranslateService } from '../../services/translate-service';
-import { take } from 'rxjs';
 import { ITranslation } from 'src/app/interfaces/itranslation';
-import { ITranslateService } from '@ngx-translate/core';
+import { Translate } from 'src/app/core/service/translate';
 
 @Component({
   selector: 'app-configuration',
@@ -18,24 +15,24 @@ import { ITranslateService } from '@ngx-translate/core';
 })
 export class ConfigurationComponent  implements OnInit {
 
+  @Output() currenLan = new EventEmitter<string>();
+
   selectControl = new FormControl('');
-  languages:ILanguage[] = [{name: 'Spanish', code: 'es'}, {name: 'English', code: 'en'}];
+  languages:ILanguage[] = [];
   value:string = '';
   confi :IConfiguration | null = null;
-  translationJson:ITranslation | null = null;
+  translationJson:ITranslation = {
+    
+  }
 
   constructor(
-    private readonly user:UserService,
     private readonly localStorage:LocalStorageService,
-    private readonly translation:TranslateService
+    private readonly translation:Translate
   ) { }
 
   ngOnInit() {
     this.getLanguageCode();
-  }
-
-  salir(){
-    this.user.mySingOut();
+    this.loadLanguages();
   }
 
   doSubmit(){
@@ -44,7 +41,9 @@ export class ConfigurationComponent  implements OnInit {
       this.confi.languageCode = newValue;
       this.value = newValue;
       this.localStorage.set(Const.CONFIGURATION_KEY, this.confi);
-      this.getJso();
+      this.translation.changeLanguage(this.value);
+      this.currenLan.emit(this.value);
+      this.loadLanguages();
     }
   }
 
@@ -52,14 +51,15 @@ export class ConfigurationComponent  implements OnInit {
     this.confi = this.localStorage.get<IConfiguration>(Const.CONFIGURATION_KEY);
     this.value = this.confi?.languageCode || '';
     this.selectControl.setValue(this.value);
-    this.getJso();
+    this.currenLan.emit(this.value);
   }
 
-  private getJso(){
-    this.translation.getTranslation<ITranslation>(this.value).pipe(take(1)).subscribe({
-      next: (value) => this.translationJson = value,
-      error: (err) => console.log(err),
-    });
+  private loadLanguages(){
+    if (this.value) {
+      this.languages = [
+        {name: (this.value==='es') ? 'Español': 'Spanish', code: 'es'}, 
+        {name: (this.value==='es') ? 'Ingles': 'English', code: 'en'}];
+    }
   }
 
 }

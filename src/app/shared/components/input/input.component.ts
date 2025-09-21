@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Translate } from 'src/app/core/service/translate';
 
 @Component({
   selector: 'app-input',
@@ -16,10 +17,13 @@ export class InputComponent  implements OnInit {
 
   helpText:string = '';
 
-  constructor() { }
+  constructor(
+    private readonly translate:Translate
+  ) { }
 
   ngOnInit() {
-    this.helpText = (this.type === 'password') ? 'minimum 6 characters' : '';
+    const text = this.translate.getTranslate('login.2');
+    this.helpText = (this.type === 'password') ? text : '';
   }
 
 }

@@ -10,6 +10,7 @@ import { FilePickerService } from 'src/app/core/service/file-picker-service';
 import { SupabaseService } from '../../services/supabase-service';
 import { Const } from 'src/app/const/const';
 import { IUserUpdate } from 'src/app/interfaces/iuser-update';
+import { Translate } from 'src/app/core/service/translate';
 
 @Component({
   selector: 'app-profile',
@@ -21,14 +22,9 @@ export class ProfileComponent implements OnInit {
 
   nameControl = new FormControl('', [Validators.required]);
   lastNameControl = new FormControl('', [Validators.required]);
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordControl = new FormControl('', [Validators.minLength(6)]);
-  passwordConfirControl = new FormControl('', [Validators.minLength(6)]);
   formGroup = new FormGroup({
     name: this.nameControl,
     lastName: this.lastNameControl,
-    email: this.emailControl,
-    password: this.passwordControl
   });
   isProviderEmail: boolean = true;
   user: IUser | null = null;
@@ -43,6 +39,7 @@ export class ProfileComponent implements OnInit {
     private readonly userService: UserService,
     private readonly file: FilePickerService,
     private readonly supabase: SupabaseService,
+    private readonly translate:Translate
   ) { }
 
   async ngOnInit() {
@@ -68,12 +65,10 @@ export class ProfileComponent implements OnInit {
   }
 
   async doSubmit() {
+    const uno = this.translate.getTranslate('profile.1');
+    const dos = this.translate.getTranslate('profile.2');
     if (!this.formGroup.valid) {
-      this.toastService.presentToast('Fill in all fields correctly', 'top', 'warning');
-      return;
-    }
-    if (this.passwordControl.value !== this.passwordConfirControl.value) {
-      this.toastService.presentToast('Passwords do not match', 'top', 'warning');
+      this.toastService.presentToast(uno, 'top', 'warning');
       return;
     }
     let data: IUserUpdate = {
@@ -88,7 +83,7 @@ export class ProfileComponent implements OnInit {
       this.user.name = this.formGroup.value.name || '';
       this.user.lastName = this.formGroup.value.lastName || '';
     }
-    this.toastService.presentToast('Updated', 'top', 'primary');
+    this.toastService.presentToast(dos, 'top', 'primary');
   }
 
 
@@ -137,7 +132,6 @@ export class ProfileComponent implements OnInit {
     if (this.user) {
       this.nameControl.setValue(this.user.name);
       this.lastNameControl.setValue(this.user.lastName);
-      this.emailControl.setValue(this.user.email);
     }
   }
 }

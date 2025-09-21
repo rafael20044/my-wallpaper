@@ -1,28 +1,28 @@
 <ion-content [fullscreen]="true">
   <div class="body">
     <ion-img src="/assets/icon/wallpaper-logo.webp" class="img"/>
-    <h1>Register for My wallpaper</h1>
+    <h1>{{'login.title'|translate}}</h1>
     <ion-card>
       <form [formGroup]="formGroup" (ngSubmit)="doSubmit()">
         <app-input 
-          label="Email" 
+          [label]="'login.email'|translate" 
           placeholder="jhon@gmail.com" 
           type="email" 
           [control]="emailControl"
         />
         <app-input 
-          label="Password" 
+          [label]="'login.password'|translate" 
           placeholder="******" 
           type="password" 
           [control]="passwordControl"
         />
         <div class="buttons">
-          <app-button text="Register" routerLink="/register"/>
-          <app-button text="Login" type="submit" />
+          <app-button [text]="'login.register'|translate" routerLink="/register"/>
+          <app-button [text]="'login.login'|translate" type="submit" />
         </div>
       </form>
       <div class="google">
-        <p>or</p>
+        <p>{{'login.or'|translate}}</p>
         <app-button (click)="registerGoogle()" iconName="logo-google" />
       </div>
     </ion-card>

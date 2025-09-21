@@ -1,8 +1,60 @@
 {
-    "Configuration":{
-        "Configuration": "Configuraciones",
-        "ChangeTheLanguage": "Cambia el idioma",
-        "Save": "Guardar",
-        "Languages": "Idiomas"
+    "configuration": {
+        "configuration": "Configuraciones",
+        "changeTheLanguage": "Cambia el idioma",
+        "save": "Guardar",
+        "languages": "Idiomas"
+    },
+    "main": {
+        "yourWallpaper": "Tus wallpapers",
+        "useThebButtonIfYouWannaAddWallpapers": "Use el boton + si quiere agregar mas wallpapers",
+        "added": "agregado"
+    },
+    "profile": {
+        "yourProfile": "Tu perfil",
+        "hi": "Hola",
+        "youCanUpdateYourProfile": "Puedes actualizar tu perfil",
+        "name": "Nombre",
+        "lastName": "Apellido",
+        "signOut": "Cerrar sesión",
+        "update": "Actualizar",
+        "newPhotoProfile": "Nueva foto de perfil",
+        "1": "Llene los campos de manera correcta",
+        "2": "Actualizado"
+    },
+    "home": {
+        "home": "Principal",
+        "profile": "perfil",
+        "configuration": "Configuraciones"
+    },
+    "login": {
+        "title": "Inicia sesión en My wallpaper",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "register": "Registrarse",
+        "login": "Iniciar sesión",
+        "or": "o",
+        "google": "Regístrate con Google",
+        "1": "Llene los campos de manera correcta",
+        "2": "Minimo 6 caracteres"
+    },
+    "register": {
+        "title": "Regístrate en My wallpaper",
+        "haveAccount": "¿Ya tienes una cuenta?",
+        "loginHere": "inicia sesión aquí",
+        "registerUsing": "Regístrate usando",
+        "emailAndPassword": "Correo y contraseña",
+        "google": "Google",
+        "name": "Nombre",
+        "lastName": "Apellido",
+        "email":"Correo electrónico",
+        "password": "Contraseña",
+        "pass": "Confirma tu contraseña",
+        "return": "Regresar",
+        "next": "Siguiente",
+        "register": "Registrarse",
+        "cancel": "Cancelar",
+        "1":"Llene los campos de manera correcta",
+        "2": "Las contraseñas no coinciden"
     }
 }

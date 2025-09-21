@@ -10,6 +10,7 @@ import { UserService } from 'src/app/shared/services/user-service';
 import {TranslatePipe, TranslateDirective} from "@ngx-translate/core";
 import { LocalStorageService } from 'src/app/shared/services/local-storage-service';
 import { IUserAuth } from 'src/app/interfaces/iuser-auth';
+import { Translate } from 'src/app/core/service/translate';
 
 @Component({
   selector: 'app-login',
@@ -30,15 +31,17 @@ export class LoginPage implements OnInit {
     private readonly router:Router,
     private readonly userService:UserService,
     private readonly toastService:ToastService,
-    private readonly localStorageService:LocalStorageService
+    private readonly localStorageService:LocalStorageService,
+    private readonly translate:Translate
   ) { }
 
   ngOnInit() {
   }
 
   async doSubmit(){
+    const uno = this.translate.getTranslate('login.1');
     if (!this.formGroup.valid) {
-      this.toastService.presentToast('Fill in all fields correctly', 'top', 'warning');
+      this.toastService.presentToast(uno, 'top', 'warning');
       return;
     }
     const {email, password} = this.formGroup.value;

@@ -1,19 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    @if (translationJson) {
-      <ion-title>{{ translationJson.Configuration.Configuration }}</ion-title>
-    }
+    <ion-title>{{'configuration.configuration' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="height: 100vh;" class="ion-padding">
-  @if (translationJson) {
     <div class="">
-      <p>{{ translationJson.Configuration.ChangeTheLanguage }}</p>
+      <p>{{ 'configuration.changeTheLanguage' | translate }}</p>
       <form (ngSubmit)="doSubmit()">
-        <app-select [languages]="languages" [value]="value" label="{{ translationJson.Configuration.Languages }}" [control]="selectControl" />
-        <app-button text="{{ translationJson.Configuration.Save }}" type="submit"/>
+        <app-select [languages]="languages" [value]="value" label="{{ 'configuration.languages' | translate}}" [control]="selectControl" />
+        <app-button text="{{ 'configuration.save' | translate}}" type="submit"/>
       </form>
     </div>
-  }
 </ion-content>

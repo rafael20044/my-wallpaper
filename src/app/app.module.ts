@@ -9,8 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core-module';
 import { provideTranslateHttpLoader, TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideTranslateService, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
-import {registerLocaleData} from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,16 +18,19 @@ import {registerLocaleData} from '@angular/common';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     CoreModule,
+    TranslateModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     provideHttpClient(),
-    /*provideTranslateService({
+    provideTranslateService({
+      lang: 'en',
+      fallbackLang: 'en',
       loader: provideTranslateHttpLoader({
-        prefix: './i18n/',
+        prefix: '/assets/i18n/',
         suffix: '.json'
-      }),
-    }),*/
+      })
+    }),
   ],
   bootstrap: [AppComponent],
 })

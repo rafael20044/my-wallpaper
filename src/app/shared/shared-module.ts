@@ -19,7 +19,7 @@ import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 import { SelectComponent } from './components/select/select.component';
-import { TranslateService } from './services/translate-service';
+import { TranslateDirective, TranslateModule } from "@ngx-translate/core";
 
 
 
@@ -44,14 +44,15 @@ import { TranslateService } from './services/translate-service';
     FireStoreService,
     RouterLink,
     LocalStorageService,
-    TranslateService,
   ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-  ],
+    TranslateDirective,
+    TranslateModule
+],
   exports: [
     InputComponent, 
     ButtonComponent, 

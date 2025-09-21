@@ -1,8 +1,60 @@
 {
-    "Configuration":{
-        "Configuration": "Configuration",
-        "ChangeTheLanguage": "Change the language",
-        "Save": "Save",
-        "Languages": "Languages"
+    "configuration": {
+        "configuration": "Configuration",
+        "changeTheLanguage": "Change the language",
+        "save": "Save",
+        "languages": "Languages"
+    },
+    "main": {
+        "yourWallpaper": "Your wallpapers",
+        "useThebButtonIfYouWannaAddWallpapers": "use the button + if you wanna add wallpapers",
+        "added": "Added"
+    },
+    "profile": {
+        "yourProfile": "your profile",
+        "hi": "Hi",
+        "youCanUpdateYourProfile": "you can update your profile",
+        "name": "Name",
+        "lastName": "Last name",
+        "signOut": "sign out",
+        "update": "Update",
+        "newPhotoProfile": "New photo profile",
+        "1": "Fill in all fields correctly",
+        "2": "Updated"
+    },
+    "home": {
+        "home": "Home",
+        "profile": "Profile",
+        "configuration": "Configuration"
+    },
+    "login": {
+        "title": "Login for My wallpaper",
+        "email": "Email",
+        "password": "Password",
+        "register": "Register",
+        "login": "Login",
+        "or": "or",
+        "google": "Sign up with Google",
+        "1": "Fill in all fields correctly",
+        "2": "minimum 6 characters"
+    },
+    "register": {
+        "title": "Register for My wallpaper",
+        "haveAccount": "You have an account?",
+        "loginHere": "login here",
+        "registerUsing": "Register using",
+        "emailAndPassword": "Email and password",
+        "google": "Google",
+        "name": "Name",
+        "lastName": "Last name",
+        "email":"Email",
+        "password": "Password",
+        "pass": "confirm your password",
+        "return": "Back",
+        "next": "next",
+        "register": "Register",
+        "cancel": "Cancel",
+        "1":"Fill in all fields correctly",
+        "2": "Passwords do not match"
     }
 }

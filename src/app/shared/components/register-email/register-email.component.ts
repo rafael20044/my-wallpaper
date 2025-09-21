@@ -8,6 +8,7 @@ import { Const } from 'src/app/const/const';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage-service';
 import { IUserAuth } from 'src/app/interfaces/iuser-auth';
+import { Translate } from 'src/app/core/service/translate';
 
 @Component({
   selector: 'app-register-email',
@@ -39,6 +40,7 @@ export class RegisterEmailComponent implements OnInit {
     private readonly storageService: FireStoreService,
     private readonly router: Router,
     private readonly localStorageService: LocalStorageService,
+    private readonly translate:Translate
   ) { }
 
   ngOnInit() { }
@@ -56,13 +58,15 @@ export class RegisterEmailComponent implements OnInit {
   }
 
   async doSubmit() {
+    const uno = this.translate.getTranslate('register.1');
+    const dos = this.translate.getTranslate('register.2');
     if (this.fromGroup.invalid) {
-      this.toastService.presentToast('Fill in all fields correctly', 'top', 'warning');
+      this.toastService.presentToast(uno, 'top', 'warning');
       return;
     }
 
     if (this.passwordControl.value !== this.passConfir.value) {
-      this.toastService.presentToast('Passwords do not match', 'top', 'warning');
+      this.toastService.presentToast(dos, 'top', 'warning');
       return;
     }
     //console.log(this.fromGroup.value);

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Your profile</ion-title>
+    <ion-title>{{'profile.yourProfile'|translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,16 +8,16 @@
   <div class="body">
     @if (user && !isLoading) {
       <img src="{{urlPhoto}}" />
-      <h1>¡Hi {{ user.name }} {{ user.lastName }}!</h1>
-      <p>You can update your profile</p>
+      <h1>¡{{'profile.hi'|translate}} {{ user.name }} {{ user.lastName }}!</h1>
+      <p>{{'profile.youCanUpdateYourProfile' | translate}}</p>
       <form [formGroup]="formGroup" (ngSubmit)="doSubmit()">
-        <app-input label="Name" [control]="nameControl"/>
-        <app-input label="Last name" [control]="lastNameControl"/>
+        <app-input label="{{'profile.name'|translate}}" [control]="nameControl"/>
+        <app-input label="{{'profile.lastName'|translate}}" [control]="lastNameControl"/>
         <div class="buttons">
-          <app-button (click)="signOut()" text="Sign out"/>
-          <app-button text="Update" type="submit" />
+          <app-button (click)="signOut()" text="{{'profile.signOut'|translate}}"/>
+          <app-button text="{{'profile.update'|translate}}" type="submit" />
         </div>
-        <app-button (click)="getImg()" text="New photo profile" />
+        <app-button (click)="getImg()" text="{{'profile.newPhotoProfile'|translate}}" />
       </form>
     }@else {
       <ion-spinner />

@@ -1,9 +1,9 @@
 <div class="body">
-    <app-input label="Name" placeholder="Jhon" [control]="nameControl" />
-    <app-input label="Last name" placeholder="Arrieta" [control]="lastNameControl" />
+    <app-input [label]="'register.name'|translate" placeholder="Jhon" [control]="nameControl" />
+    <app-input [label]="'register.lastName'|translate" placeholder="Arrieta" [control]="lastNameControl" />
     <div class="buttons">
-        <app-button (click)="emiterIsCancel()" text="Cancel" />
-        <app-button (click)="emiterIsNext()" text="Next" />
+        <app-button (click)="emiterIsCancel()" [text]="'register.cancel'|translate" />
+        <app-button (click)="emiterIsNext()" [text]="'register.next'|translate" />
     </div>
 
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Const } from 'src/app/const/const';
 import { FilePickerService } from 'src/app/core/service/file-picker-service';
+import { Translate } from 'src/app/core/service/translate';
 import { IUser } from 'src/app/interfaces/iuser';
 import { IUserAuth } from 'src/app/interfaces/iuser-auth';
 import { FireStoreService } from 'src/app/shared/services/fire-store-service';
@@ -16,7 +17,13 @@ import { UserService } from 'src/app/shared/services/user-service';
   standalone: false,
 })
 export class HomePage implements OnInit {
-  constructor(){}
+  constructor(
+    private readonly translate:Translate
+  ){}
   
   ngOnInit(): void {}
+
+  getCurrenLan(code:string){
+    this.translate.changeLanguage(code);
+  }
 }

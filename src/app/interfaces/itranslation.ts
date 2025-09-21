@@ -1,10 +1,10 @@
 export interface ITranslation {
-    Configuration: Configuration
+    configuration?: Configuration
 }
 
 export interface Configuration {
-    Configuration: string
-    ChangeTheLanguage: string
-    Save: string
-    Languages: string
+    configuration?: string
+    ChangeTheLanguage?: string
+    Save?: string
+    Languages?: string
 }

@@ -8,6 +8,7 @@ import { FireStoreService } from '../../services/fire-store-service';
 import { LocalStorageService } from '../../services/local-storage-service';
 import { SupabaseService } from '../../services/supabase-service';
 import { ToastService } from '../../services/toast-service';
+import { Translate } from 'src/app/core/service/translate';
 
 @Component({
   selector: 'app-main',
@@ -22,12 +23,12 @@ export class MainComponent implements OnInit {
   private userAuth: IUserAuth | null = null;
 
   constructor(
-    private readonly userService: UserService,
     private readonly file: FilePickerService,
     private readonly database: FireStoreService,
     private readonly localStorage: LocalStorageService,
     private readonly supabase: SupabaseService,
     private readonly toastService: ToastService,
+    private readonly translate:Translate
   ) { }
 
   async ngOnInit() {
@@ -53,7 +54,8 @@ export class MainComponent implements OnInit {
           path: dataUrl.path
         });
         await this.database.updateData(this.user.uid, this.user);
-        await this.toastService.presentToast('added', 'top', 'primary');
+        const message = this.translate.getTranslate('main.added');
+        await this.toastService.presentToast(message, 'top', 'primary');
       }
     }
   }

@@ -1,5 +1,5 @@
 <div>
-  <p>Register using</p>
-  <app-button (click)="emitIsEmail()" text="Email and password" />
+  <p>{{ 'register.registerUsing'|translate}}</p>
+  <app-button (click)="emitIsEmail()" [text]="'register.emailAndPassword'|translate" />
   <app-button (click)="registerGoogle()" iconName="logo-google"/>
 </div>

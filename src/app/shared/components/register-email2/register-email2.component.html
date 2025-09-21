@@ -1,9 +1,9 @@
 <div class="body">
-  <app-input label="Email" placeholder="jhon@gmail.com" type="email" [control]="emailControl" />
-  <app-input label="Password" placeholder="*************" type="password" [control]="passwordControl" />
-  <app-input label="confirm your password" placeholder="**************" type="password" [control]="passConfir" />
+  <app-input [label]="'register.email'|translate" placeholder="jhon@gmail.com" type="email" [control]="emailControl" />
+  <app-input [label]="'register.password'|translate" placeholder="*************" type="password" [control]="passwordControl" />
+  <app-input [label]="'register.pass'|translate" placeholder="**************" type="password" [control]="passConfir" />
   <div class="buttons">
-    <app-button (click)="emiterIsReturn()" text="Return" />
-    <app-button text="Register" type="submit" />
+    <app-button (click)="emiterIsReturn()" [text]="'register.return'|translate" />
+    <app-button [text]="'register.register'|translate" type="submit" />
   </div>
 </div>

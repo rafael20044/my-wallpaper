@@ -7,6 +7,7 @@ import { Capacitor } from '@capacitor/core';
 import { IConfiguration } from '../interfaces/iconfiguration';
 import { LocalStorageService } from '../shared/services/local-storage-service';
 import { Const } from '../const/const';
+import { Translate } from './service/translate';
 
 
 
@@ -22,6 +23,7 @@ export class CoreModule implements OnInit {
     private readonly file: FilePickerService,
     private readonly deviceService:DeviceService,
     private readonly localStorageService:LocalStorageService,
+    private readonly transalte:Translate,
   ) {
     this.ngOnInit();
   }
@@ -40,12 +42,16 @@ export class CoreModule implements OnInit {
     const confi: IConfiguration | null = this.localStorageService.get(Const.CONFIGURATION_KEY);
     if (!confi) {
       const code = await this.deviceService.getLanguageCode();
+      const lang = code.value.substring(0, 2);  
       const confiDefault: IConfiguration = {
         thema: 'light',
-        languageCode: (code.value === 'es' || code.value === 'en') ? code.value : 'en',
+        languageCode: (lang === 'es' || lang === 'en') ? code.value : 'en',
       };
+      this.transalte.changeLanguage(confiDefault.languageCode);
       this.localStorageService.set(Const.CONFIGURATION_KEY, confiDefault);
+      return;
     }
+    this.transalte.changeLanguage(confi.languageCode);
   }
 
 }

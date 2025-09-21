@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { SharedModule } from 'src/app/shared/shared-module';
+import { TranslateDirective, TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,7 +17,9 @@ import { SharedModule } from 'src/app/shared/shared-module';
     IonicModule,
     LoginPageRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateDirective,
+    TranslateModule
 ],
   declarations: [LoginPage]
 })
