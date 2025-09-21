@@ -1,21 +1,101 @@
-.body{
-    height: 100vh;
+/* register.page.scss */
+ion-content {
+    --background: #f8f9fa;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --padding-top: 1rem;
+    --padding-bottom: 1rem;
+}
+
+.body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100%;
+    padding: 1rem;
 }
 
-.body .img{
-    width: 20%;
+.img {
+    width: 40%;
+    max-width: 12rem;
+    margin: 1.5rem auto 1rem;
 }
 
-.body .icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 1.5rem;
+    line-height: 1.4;
+    padding: 0 1rem;
 }
 
-.body .icon a{
-    text-decoration: none;
+.icon {
+    margin-top: 2rem;
+    text-align: center;
+
+    p {
+        color: #666;
+        font-size: 0.9rem;
+        margin: 0;
+
+        a {
+            color: #3880ff;
+            text-decoration: none;
+            font-weight: 500;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+/* Estilos para el componente de opciones de registro */
+app-opcion-register {
+    display: block;
+    width: 100%;
+    max-width: 24rem;
+}
+
+/* Estilos para el componente de registro por email */
+app-register-email {
+    display: block;
+    width: 100%;
+    max-width: 24rem;
+}
+
+/* Transiciones suaves para el cambio entre componentes */
+div {
+    transition: all 0.3s ease;
+}
+
+/* Estilos responsivos adicionales */
+@media (max-height: 40rem) {
+    .img {
+        width: 30%;
+        margin: 1rem auto 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+        margin: 0 0 1rem;
+    }
+
+    .icon {
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 22rem) {
+    .body {
+        padding: 0.5rem;
+    }
+
+    h1 {
+        padding: 0 0.5rem;
+        font-size: 1.3rem;
+    }
 }

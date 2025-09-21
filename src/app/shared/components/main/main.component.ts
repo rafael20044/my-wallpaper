@@ -68,25 +68,27 @@ export class MainComponent implements OnInit {
     this.userAuth = this.localStorage.get<IUserAuth>(Const.USER_AUTH);
   }
 
-  private async updateUrl(){
+  private async updateUrl() {
     if (this.user) {
-      const {pathPhoto, photoURL} = this.user;
+      const { pathPhoto, photoURL } = this.user;
       const wallpapers = this.user.wallpapers;
-      const isValid = await this.supabase.isSignedUrlValid(photoURL);
-      if (!isValid) {
-        const newPhotoUrl = await this.supabase.getSignUrl(Const.BUCKET, pathPhoto);
-        this.user.photoURL = newPhotoUrl?.url || '';
-        console.log(this.user.photoURL);
-      }
-      for(let i = 0; i < wallpapers.length; i++){
-        const {path, url} = wallpapers[i];
-        const isValid = await this.supabase.isSignedUrlValid(url);
+      if (pathPhoto && photoURL && wallpapers.length > 0) {
+        const isValid = await this.supabase.isSignedUrlValid(photoURL);
         if (!isValid) {
-          const newUrl = await this.supabase.getSignUrl(Const.BUCKET, path);
-          wallpapers[i].url = newUrl?.url || '';
+          const newPhotoUrl = await this.supabase.getSignUrl(Const.BUCKET, pathPhoto);
+          this.user.photoURL = newPhotoUrl?.url || '';
+          console.log(this.user.photoURL);
         }
+        for (let i = 0; i < wallpapers.length; i++) {
+          const { path, url } = wallpapers[i];
+          const isValid = await this.supabase.isSignedUrlValid(url);
+          if (!isValid) {
+            const newUrl = await this.supabase.getSignUrl(Const.BUCKET, path);
+            wallpapers[i].url = newUrl?.url || '';
+          }
+        }
+        await this.database.updateData(this.user.uid, this.user);
       }
-      await this.database.updateData(this.user.uid, this.user);
     }
   }
 

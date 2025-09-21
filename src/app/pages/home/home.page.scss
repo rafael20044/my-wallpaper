@@ -1,8 +1,83 @@
-/*.body{
-    height: 100vh;
-}*/
+ion-tabs {
+    --ion-background-color: #ffffff;
+}
 
-.body .grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+ion-tab-bar {
+    --background: #ffffff;
+    --border: 0.0625rem solid #e0e0e0;
+    box-shadow: 0 -0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+    padding: 0.25rem 0;
+    height: 3.5rem;
+}
+
+ion-tab-button {
+    --color: #666;
+    --color-selected: #3880ff;
+    --padding-top: 0.25rem;
+    --padding-bottom: 0.25rem;
+
+    ion-icon {
+        font-size: 1.25rem;
+        margin-bottom: 0.25rem;
+    }
+
+    &::part(native) {
+        flex-direction: column;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+}
+
+ion-tab-button.tab-selected {
+    ion-icon {
+        transform: translateY(-0.125rem);
+        transition: transform 0.2s ease;
+    }
+}
+
+ion-tab {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+app-main,
+app-profile,
+app-configuration {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+@media (max-width: 22rem) {
+    ion-tab-bar {
+        height: 3rem;
+        padding: 0.125rem 0;
+    }
+
+    ion-tab-button {
+        ion-icon {
+            font-size: 1.125rem;
+        }
+
+        &::part(native) {
+            font-size: 0.7rem;
+        }
+    }
+}
+
+@media (min-width: 48rem) {
+    ion-tab-bar {
+        padding: 0.5rem 0;
+    }
+}
+
+ion-tab-button:focus {
+    outline: none;
+
+    ion-icon {
+        outline: 0.125rem solid #3880ff;
+        outline-offset: 0.125rem;
+        border-radius: 0.25rem;
+    }
 }

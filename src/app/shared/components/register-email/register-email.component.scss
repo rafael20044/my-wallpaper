@@ -1,11 +1,55 @@
-form{
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+ion-card {
+    width: 100%;
+    max-width: 24rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 1rem;
+    margin: 0 auto;
 }
 
-form .buttons{
+form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+form {
+    position: relative;
+    min-height: 20rem;
+}
+
+app-register-email1,
+app-register-email2 {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 22rem) {
+    ion-card {
+        padding: 1rem 0.75rem;
+        border-radius: 0.8rem;
+    }
+
+    form {
+        gap: 1rem;
+        min-height: 18rem;
+    }
+}
+
+@media (max-height: 40rem) {
+    form {
+        min-height: 16rem;
+    }
 }
