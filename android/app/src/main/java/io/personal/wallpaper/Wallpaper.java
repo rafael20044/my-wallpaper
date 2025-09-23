@@ -24,7 +24,6 @@ public class Wallpaper {
 
     try {
 
-      // 1. Descargar la imagen
       var url = new URL(imgUrl);
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setDoInput(true);
@@ -37,18 +36,15 @@ public class Wallpaper {
         return false;
       }
 
-      // 2. Obtener instancia de WallpaperManager
       WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
 
-      // 3. Determinar destino
-      int flag = WallpaperManager.FLAG_SYSTEM; // por defecto Home
+      int flag = WallpaperManager.FLAG_SYSTEM;
       if ("lock".equalsIgnoreCase(target)) {
         flag = WallpaperManager.FLAG_LOCK;
       } else if ("both".equalsIgnoreCase(target)) {
         flag = WallpaperManager.FLAG_SYSTEM | WallpaperManager.FLAG_LOCK;
       }
 
-      // 4. Aplicar wallpaper
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         wallpaperManager.setBitmap(bitmap, null, true, flag);
       } else {
